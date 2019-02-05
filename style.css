@@ -1,0 +1,10 @@
+body {
+  background: #232323;
+}
+
+.square {
+  background: green;
+  width: 30%;
+  margin: 1.67%;
+  padding-bottom: 30%;
+}
