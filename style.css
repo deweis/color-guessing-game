@@ -1,10 +1,21 @@
 body {
   background: #232323;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+#container {
+  max-width: 600px;
+  margin: 50px auto;
 }
 
 .square {
   background: green;
   width: 30%;
-  margin: 1.67%;
+  margin: 1.66%;
   padding-bottom: 30%;
+  float: left;
 }
