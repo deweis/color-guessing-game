@@ -1,14 +1,7 @@
-const colors = [
-  'rgb(255, 0, 0)',
-  'rgb(255, 255, 0)',
-  'rgb(0, 255, 0)',
-  'rgb(0, 255, 255)',
-  'rgb(0, 0, 255)',
-  'rgb(255, 0, 255)'
-];
-
+const countColors = 6;
+const colors = generateColors(countColors);
 const squares = document.querySelectorAll('.square');
-const pickedColor = colors[getRandomBetween(0, 6)];
+const pickedColor = colors[getRandomBetween(0, countColors)];
 const colorDisplay = document.querySelector('#colorDisplay');
 const messageDisplay = document.querySelector('#message');
 const title = document.querySelector('#title');
@@ -35,16 +28,33 @@ squares.forEach((square, i) => {
   });
 });
 
+/* HELPER FUNCTION: Change the colors of the squares and title background */
 function changeColor(color) {
   squares.forEach(x => (x.style.backgroundColor = color));
   title.style.backgroundColor = color;
   title.style.color = '#232323';
 }
 
-/**
- * Returns a random number between min (inclusive) and max (exclusive)
- * https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
- */
+/* HELPER FUNCTION: Create a random number in a range */
 function getRandomBetween(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * max + min);
+}
+
+/* HELPER FUNCTION: Generate an array of x random colors */
+function generateColors(num) {
+  let arrColors = [];
+
+  for (let i = 0; i < num; i++) {
+    arrColors.push(getColor());
+  }
+  console.log(arrColors);
+  return arrColors;
+}
+
+/* HELPER FUNCTION: Generate one random color */
+function getColor() {
+  const red = getRandomBetween(0, 256);
+  const green = getRandomBetween(0, 256);
+  const blue = getRandomBetween(0, 256);
+  return `rgb(${red}, ${green}, ${blue})`;
 }
