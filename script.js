@@ -8,9 +8,11 @@ const colors = [
 ];
 
 const squares = document.querySelectorAll('.square');
-const pickedColor = colors[3];
-
+const pickedColor = colors[getRandomBetween(0, 6)];
 const colorDisplay = document.querySelector('#colorDisplay');
+const messageDisplay = document.querySelector('#message');
+const title = document.querySelector('#title');
+
 colorDisplay.textContent = pickedColor;
 
 squares.forEach((square, i) => {
@@ -25,8 +27,24 @@ squares.forEach((square, i) => {
     // Compare color to picked color and adjust backgrounds accordingly
     if (clickedColor !== pickedColor) {
       square.style.backgroundColor = '#232323';
+      messageDisplay.textContent = 'Try Again';
     } else {
-      squares.forEach(x => (x.style.backgroundColor = clickedColor));
+      messageDisplay.textContent = 'Correct!';
+      changeColor(clickedColor);
     }
   });
 });
+
+function changeColor(color) {
+  squares.forEach(x => (x.style.backgroundColor = color));
+  title.style.backgroundColor = color;
+  title.style.color = '#232323';
+}
+
+/**
+ * Returns a random number between min (inclusive) and max (exclusive)
+ * https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+ */
+function getRandomBetween(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}

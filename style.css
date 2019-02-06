@@ -4,11 +4,12 @@ body {
   text-align: center;
 }
 
-h1 {
+h1,
+#message {
   color: white;
 }
 
-span {
+h1 span {
   text-transform: uppercase;
 }
 
