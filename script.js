@@ -1,32 +1,51 @@
 const countColors = 6;
-const colors = generateColors(countColors);
 const squares = document.querySelectorAll('.square');
-const pickedColor = colors[getRandomBetween(0, countColors)];
 const colorDisplay = document.querySelector('#colorDisplay');
 const messageDisplay = document.querySelector('#message');
 const title = document.querySelector('#title');
+const buttonNewGame = document.querySelector('#btnNewGame');
+let colors = generateColors(countColors);
+let pickedColor = colors[getRandomBetween(0, countColors)];
 
-colorDisplay.textContent = pickedColor;
+buttonNewGame.addEventListener('click', newGame);
 
-squares.forEach((square, i) => {
-  // Add background color to the squares
-  square.style.backgroundColor = colors[i];
+newGame();
 
-  // Add click listener to the squares
-  square.addEventListener('click', () => {
-    // Grab color of clicked square
-    const clickedColor = square.style.backgroundColor;
+/* Start a new Game */
+function newGame() {
+  colors = generateColors(countColors);
+  pickedColor = colors[getRandomBetween(0, countColors)];
+  colorDisplay.textContent = pickedColor;
+  messageDisplay.textContent = '';
+  buttonNewGame.textContent = 'Change Color';
+  title.style.backgroundColor = '#232323';
+  title.style.color = 'white';
+  updateSquares();
+}
 
-    // Compare color to picked color and adjust backgrounds accordingly
-    if (clickedColor !== pickedColor) {
-      square.style.backgroundColor = '#232323';
-      messageDisplay.textContent = 'Try Again';
-    } else {
-      messageDisplay.textContent = 'Correct!';
-      changeColor(clickedColor);
-    }
+/* HELPER FUNCTION: Update the squares accordingly with colors */
+function updateSquares() {
+  squares.forEach((square, i) => {
+    // Add background color to the squares
+    square.style.backgroundColor = colors[i];
+
+    // Add click listener to the squares
+    square.addEventListener('click', () => {
+      // Grab color of clicked square
+      const clickedColor = square.style.backgroundColor;
+
+      // Compare color to picked color and adjust backgrounds accordingly
+      if (clickedColor !== pickedColor) {
+        square.style.backgroundColor = '#232323';
+        messageDisplay.textContent = 'Try Again';
+      } else {
+        messageDisplay.textContent = 'Correct!';
+        buttonNewGame.textContent = 'New Game?';
+        changeColor(clickedColor);
+      }
+    });
   });
-});
+}
 
 /* HELPER FUNCTION: Change the colors of the squares and title background */
 function changeColor(color) {

@@ -4,13 +4,46 @@ body {
   text-align: center;
 }
 
-h1,
-#message {
+h1 {
   color: white;
 }
 
 h1 span {
   text-transform: uppercase;
+}
+
+.subTitleContainer {
+  background-color: white;
+  color: black;
+  height: 34px;
+}
+
+.subTitle {
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  background-color: white;
+  padding: 7px;
+  font-size: 1.1em;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #232323;
+  color: white;
+}
+
+#message {
+  font-size: 1.1em;
+  font-weight: 700;
 }
 
 #container {
