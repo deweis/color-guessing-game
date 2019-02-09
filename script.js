@@ -1,3 +1,4 @@
+/* The variables in use */
 const container = document.querySelector('#container');
 const colorDisplay = document.querySelector('#colorDisplay');
 const messageDisplay = document.querySelector('#message');
@@ -5,20 +6,18 @@ const title = document.querySelector('#title');
 const buttonNewGame = document.querySelector('#btnNewGame');
 const buttonEasy = document.querySelector('#btnEasy');
 const buttonHard = document.querySelector('#btnHard');
-let squares = document.querySelectorAll('.square');
+const squares = document.querySelectorAll('.square');
 let countColors = 6;
 let colors = generateColors(countColors);
 let pickedColor = colors[getRandomBetween(0, countColors)];
 
+/* Add Event Listeners to the Buttons */
 buttonNewGame.addEventListener('click', newGame);
 buttonEasy.addEventListener('click', () => changeMode('easy'));
 buttonHard.addEventListener('click', () => changeMode('hard'));
 
-newGame();
-
-/* Start a new Game */
+/* FUNCTION to start a new Game */
 function newGame() {
-  console.log(countColors);
   colors = generateColors(countColors);
   pickedColor = colors[getRandomBetween(0, countColors)];
   colorDisplay.textContent = pickedColor;
@@ -28,6 +27,9 @@ function newGame() {
   title.style.color = 'white';
   updateSquares();
 }
+
+/* Start the Game */
+newGame();
 
 /* HELPER FUNCTION: Toggle between EASY and HARD Mode */
 function changeMode(mode) {
