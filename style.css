@@ -64,4 +64,5 @@ button:hover {
   float: left;
   border-radius: 20px;
   transition: 1s ease;
+  cursor: pointer;
 }

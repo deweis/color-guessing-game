@@ -48,21 +48,15 @@ function applyMode(num) {
   buttonEasy.classList.toggle('btn-active');
   buttonHard.classList.toggle('btn-active');
   countColors = num;
-  setSquares(countColors);
-  newGame();
-}
 
-/* HELPER FUNCTION: Set squares based on play mode, I.e. count colors */
-function setSquares(num) {
-  container.innerHTML = '';
-
-  for (let i = 0; i < num; i++) {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'square');
-    container.appendChild(div);
+  /* show/hide squares */
+  const display = countColors === 3 ? 'none' : 'block';
+  for (let i = 3; i < squares.length; i++) {
+    squares[i].style.display = display;
   }
 
-  squares = document.querySelectorAll('.square');
+  /* restart game*/
+  newGame();
 }
 
 /* HELPER FUNCTION: Update the squares accordingly with colors */
