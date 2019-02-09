@@ -1,18 +1,24 @@
-const countColors = 6;
-const squares = document.querySelectorAll('.square');
+const container = document.querySelector('#container');
 const colorDisplay = document.querySelector('#colorDisplay');
 const messageDisplay = document.querySelector('#message');
 const title = document.querySelector('#title');
 const buttonNewGame = document.querySelector('#btnNewGame');
+const buttonEasy = document.querySelector('#btnEasy');
+const buttonHard = document.querySelector('#btnHard');
+let squares = document.querySelectorAll('.square');
+let countColors = 6;
 let colors = generateColors(countColors);
 let pickedColor = colors[getRandomBetween(0, countColors)];
 
 buttonNewGame.addEventListener('click', newGame);
+buttonEasy.addEventListener('click', () => changeMode('easy'));
+buttonHard.addEventListener('click', () => changeMode('hard'));
 
 newGame();
 
 /* Start a new Game */
 function newGame() {
+  console.log(countColors);
   colors = generateColors(countColors);
   pickedColor = colors[getRandomBetween(0, countColors)];
   colorDisplay.textContent = pickedColor;
@@ -21,6 +27,42 @@ function newGame() {
   title.style.backgroundColor = '#232323';
   title.style.color = 'white';
   updateSquares();
+}
+
+/* HELPER FUNCTION: Toggle between EASY and HARD Mode */
+function changeMode(mode) {
+  if (
+    (mode === 'hard' && countColors === 6) ||
+    (mode === 'easy' && countColors === 3)
+  ) {
+    return;
+  } else if (mode === 'hard' && countColors === 3) {
+    applyMode(6);
+  } else if (mode === 'easy' && countColors === 6) {
+    applyMode(3);
+  }
+}
+
+/* HELPER FUNCTION: Toggle Easy/Hard button */
+function applyMode(num) {
+  buttonEasy.classList.toggle('btn-active');
+  buttonHard.classList.toggle('btn-active');
+  countColors = num;
+  setSquares(countColors);
+  newGame();
+}
+
+/* HELPER FUNCTION: Set squares based on play mode, I.e. count colors */
+function setSquares(num) {
+  container.innerHTML = '';
+
+  for (let i = 0; i < num; i++) {
+    const div = document.createElement('div');
+    div.setAttribute('class', 'square');
+    container.appendChild(div);
+  }
+
+  squares = document.querySelectorAll('.square');
 }
 
 /* HELPER FUNCTION: Update the squares accordingly with colors */
