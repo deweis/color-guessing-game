@@ -93,7 +93,6 @@ function updateSquares() {
 function changeColor(color) {
   squares.forEach(x => (x.style.backgroundColor = color));
   title.style.backgroundColor = color;
-  title.style.color = '#232323';
 }
 
 /* HELPER FUNCTION: Create a random number in a range */
