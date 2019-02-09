@@ -62,4 +62,6 @@ button:hover {
   margin: 1.66%;
   padding-bottom: 30%;
   float: left;
+  border-radius: 20px;
+  transition: 1s ease;
 }
