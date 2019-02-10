@@ -37,10 +37,10 @@ function changeMode(mode) {
     (mode === 'hard' && countColors === 6) ||
     (mode === 'easy' && countColors === 3)
   ) {
-    return;
+    newGame();
   } else if (mode === 'hard' && countColors === 3) {
     applyMode(6);
-  } else if (mode === 'easy' && countColors === 6) {
+  } else {
     applyMode(3);
   }
 }
@@ -78,7 +78,7 @@ function updateSquares() {
         messageDisplay.textContent = 'Try Again';
       } else {
         messageDisplay.textContent = 'Correct!';
-        buttonNewGame.textContent = 'New Game?';
+        buttonNewGame.textContent = 'Play Again?';
         changeColor(clickedColor);
       }
     });
@@ -103,7 +103,7 @@ function generateColors(num) {
   for (let i = 0; i < num; i++) {
     arrColors.push(getColor());
   }
-  console.log(arrColors);
+  // console.log(arrColors);
   return arrColors;
 }
 
